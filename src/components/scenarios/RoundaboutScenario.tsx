@@ -7,12 +7,10 @@ export function RoundaboutScenario() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [carAngle, setCarAngle] = useState(180); // Start from bottom
-  const [carDistance, setCarDistance] = useState(45); // Distance from center
-  const [signalLeft, setSignalLeft] = useState(false);
+  const [carDistance, setCarDistance] = useState(45); 
   const [signalRight, setSignalRight] = useState(false);
   const [otherCarAngle, setOtherCarAngle] = useState(90);
   const [showYield, setShowYield] = useState(false);
-  const [inRoundabout, setInRoundabout] = useState(false);
 
   const steps = [
     "Approach the roundabout - yield to traffic inside",
@@ -45,7 +43,6 @@ export function RoundaboutScenario() {
       // Enter roundabout
       { delay: 4000, action: () => { 
         setCurrentStep(3); 
-        setInRoundabout(true);
         setCarDistance(22);
       }},
       { delay: 4500, action: () => { setCurrentStep(4); setCarAngle(210); } },
@@ -81,11 +78,9 @@ export function RoundaboutScenario() {
     setCurrentStep(0);
     setCarAngle(180);
     setCarDistance(45);
-    setSignalLeft(false);
     setSignalRight(false);
     setOtherCarAngle(90);
     setShowYield(false);
-    setInRoundabout(false);
   };
 
   // Convert polar to cartesian coordinates

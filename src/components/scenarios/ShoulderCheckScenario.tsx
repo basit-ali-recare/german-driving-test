@@ -6,7 +6,6 @@ import { ScenarioBase } from './ScenarioBase';
 export function ShoulderCheckScenario() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [carLane, setCarLane] = useState<'right' | 'changing' | 'left'>('right');
   const [signalOn, setSignalOn] = useState(false);
   const [mirrorCheck, setMirrorCheck] = useState(false);
   const [shoulderCheck, setShoulderCheck] = useState(false);
@@ -30,7 +29,6 @@ export function ShoulderCheckScenario() {
       // Want to change lanes
       { delay: 0, action: () => { 
         setCurrentStep(0);
-        setCarLane('right');
         setBlindSpotCar(true);
       }},
       // Signal
@@ -68,11 +66,9 @@ export function ShoulderCheckScenario() {
       }},
       // Safe to change
       { delay: 8500, action: () => { 
-        setCarLane('changing');
         setCarX(42);
       }},
       { delay: 9000, action: () => { 
-        setCarLane('left');
         setCarX(35);
         setSignalOn(false);
       }},
@@ -89,7 +85,6 @@ export function ShoulderCheckScenario() {
   const reset = () => {
     setIsPlaying(false);
     setCurrentStep(0);
-    setCarLane('right');
     setSignalOn(false);
     setMirrorCheck(false);
     setShoulderCheck(false);
