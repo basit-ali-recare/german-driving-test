@@ -76,7 +76,9 @@ export function PracticeMode({ selectedCategories }: PracticeModeProps) {
     ? Math.round((score.correct / score.total) * 100) 
     : 0;
 
-  const practiceProgress = Math.round((usedCommands.size / filteredCommands.length) * 100);
+  const practiceProgress = filteredCommands.length > 0
+    ? Math.round((usedCommands.size / filteredCommands.length) * 100)
+    : 0;
 
   // Reset when categories change
   useEffect(() => {
@@ -111,9 +113,14 @@ export function PracticeMode({ selectedCategories }: PracticeModeProps) {
             {filteredCommands.length} commands available
           </p>
 
-          <Button size="lg" onClick={startPractice} className="gap-2">
+          <Button 
+            size="lg" 
+            onClick={startPractice} 
+            className="gap-2"
+            disabled={filteredCommands.length === 0}
+          >
             <Play className="h-5 w-5" />
-            Start Practice
+            {filteredCommands.length === 0 ? 'No Commands Available' : 'Start Practice'}
           </Button>
         </CardContent>
       </Card>
